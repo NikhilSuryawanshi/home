@@ -1,0 +1,18 @@
+{
+  "name": "nikhil-portfolio-project1",
+  "version": "1.0.0",
+  "description": "Futuristic 3D Developer Portfolio for Nikhil Suryawanshi (Project 1)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 8080 --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

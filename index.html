@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nikhil Suryawanshi | Cyber Portfolio | Google TSE Serverless & MLOps Engineer</title>
+  <meta name="description" content="Futuristic 3D portfolio of Nikhil Suryawanshi, Google TSE Serverless & MLOps Engineer. Powered by WebGL, Three.js, and GSAP.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Core Stylesheet (Relative for Subfolder compatibility) -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- WebGL 3D Canvas Background Container -->
+  <div id="canvas-container"></div>
+  
+  <!-- Futuristic Grid Overlay -->
+  <div class="cyber-grid-overlay"></div>
+  <div class="cyber-scanline"></div>
+
+  <!-- Real-Time Telemetry HUD Overlay -->
+  <div class="hud-layer">
+    <div class="hud-panel panel-left">
+      <div class="hud-corner top-left"></div>
+      <div class="hud-header"><i class="fas fa-terminal"></i> TELEMETRY_SYS</div>
+      <div class="hud-row"><span class="hud-label">SYS_STATUS:</span> <span class="hud-val text-green">ACTIVE</span></div>
+      <div class="hud-row"><span class="hud-label">SECTOR:</span> <span class="hud-val">GCP_SERVERLESS</span></div>
+      <div class="hud-row"><span class="hud-label">CORES:</span> <span class="hud-val text-blue">140_NODES</span></div>
+      <div class="hud-row"><span class="hud-label">REFRESH_R:</span> <span class="hud-val" id="hud-fps">60 FPS</span></div>
+    </div>
+    
+    <div class="hud-panel panel-right">
+      <div class="hud-corner top-right"></div>
+      <div class="hud-header"><i class="fas fa-compass"></i> RAYCAST_COORDS</div>
+      <div class="hud-row"><span class="hud-label">VECTOR_X:</span> <span class="hud-val text-pink" id="hud-val-x">0.00</span></div>
+      <div class="hud-row"><span class="hud-label">VECTOR_Y:</span> <span class="hud-val text-pink" id="hud-val-y">0.00</span></div>
+      <div class="hud-row"><span class="hud-label">DEPTH_Z:</span> <span class="hud-val text-pink" id="hud-val-z">0.00</span></div>
+      <div class="hud-row"><span class="hud-label">LOAD_PCT:</span> <span class="hud-val text-blue" id="hud-scroll">0.00%</span></div>
+    </div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <div class="loader-content">
+      <div class="cyber-glitch-text" data-text="INITIALIZING SYSTEM">INITIALIZING SYSTEM</div>
+      <div class="loader-spinner"></div>
+      <p class="loader-text">CONNECTING TO CORES...</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="load-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor"></div>
+  <div id="custom-cursor-dot"></div>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="glass-panel cyber-navbar">
+      <div class="logo">
+        <a href="#hero">
+          <span class="logo-accent">[</span> N_SURYAWANSHI <span class="logo-accent">]</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">// HOME</a></li>
+        <li><a href="#about">// ABOUT</a></li>
+        <li><a href="#experience">// TIMELINE</a></li>
+        <li><a href="#skills">// STACK</a></li>
+        <li><a href="#projects">// DIRECTORY</a></li>
+        <li><a href="#contact">// LINK_UP</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="mailto:nikhil.suryawanshi.dev@google.com" class="btn btn-nav"><i class="fas fa-envelope"></i> mailto_</a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Scrollable Content Container -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section id="hero" class="section">
+      <div class="hero-wrapper">
+        <div class="hero-left glass-card cyber-card reveal">
+          <div class="tech-corner top-left"></div>
+          <div class="tech-corner bottom-right"></div>
+          <div class="tag-badge"><i class="fa-brands fa-google brand-google-color"></i> Google TSE // Serverless</div>
+          <h1 class="hero-title">
+            <span class="greeting">SYS.OPERATOR_</span><br>
+            <span class="name-gradient">Nikhil Suryawanshi</span>
+          </h1>
+          <p class="hero-subtitle">
+            Engineering scalable <strong>Serverless Infrastructure</strong> and production-grade <strong>MLOps Pipelines</strong>. Supporting global operations from the core of Google.
+          </p>
+          <div class="experience-metrics">
+            <div class="metric">
+              <span class="metric-num">5+</span>
+              <span class="metric-label">Years Exp</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric">
+              <span class="metric-num">2</span>
+              <span class="metric-label">Google TSE</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric">
+              <span class="metric-num">3</span>
+              <span class="metric-label">MLOps Eng</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">DECRYPT WORK <i class="fas fa-database"></i></a>
+            <a href="#contact" class="btn btn-secondary">PING_OPERATOR</a>
+          </div>
+        </div>
+        
+        <div class="hero-right instruction-card glass-card cyber-card reveal">
+          <div class="tech-corner top-right"></div>
+          <div class="tech-corner bottom-left"></div>
+          <div class="control-header">
+            <div class="dot-btn red"></div>
+            <div class="dot-btn yellow"></div>
+            <div class="dot-btn green"></div>
+            <span class="control-title">CORE_DIAGNOSTICS</span>
+          </div>
+          <div class="control-body">
+            <p><i class="fas fa-compress-arrows-alt"></i> <strong>RAYCAST INTERACTION:</strong> Hover cursor to distort the gravitational starfield.</p>
+            <p><i class="fas fa-mouse"></i> <strong>SCROLL RIG:</strong> Accelerate to warp the camera vector path through core nodes.</p>
+            <p><i class="fas fa-sync-alt"></i> <strong>VECTOR CONTROL:</strong> Click & Drag the empty space to rotate the core system.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="section-container">
+        <h2 class="section-title reveal"><span class="title-number">01.</span> CORE_DOSSIER</h2>
+        <div class="grid grid-2col gap-lg">
+          <div class="glass-card pad-lg cyber-card reveal">
+            <div class="tech-corner top-left"></div>
+            <div class="tech-corner bottom-right"></div>
+            <h3 class="card-subtitle-accent">// SYSTEM_OVERVIEW</h3>
+            <p class="about-text">
+              I am a cloud platform engineer and ML practitioner with <strong>5 years of professional experience</strong>. Currently stationed at <strong>Google</strong> as a <strong>Technical Solutions Engineer (TSE) Serverless</strong>, supporting major global enterprises with serverless infrastructure on Google Cloud Platform.
+            </p>
+            <p class="about-text">
+              Prior to my current operations, I worked for 3 years as an <strong>MLOps Engineer</strong>. I specialized in building production-grade CI/CD pipelines, packaging machine learning models inside OCI containers, and scaling workloads dynamically using Kubernetes.
+            </p>
+            <p class="about-text">
+              This combined expertise enables me to design, monitor, and optimize highly available, event-driven serverless systems, reducing cold-start overhead and troubleshooting enterprise-scale cloud incidents.
+            </p>
+          </div>
+          
+          <div class="about-visual glass-card pad-lg cyber-card reveal">
+            <div class="tech-corner top-right"></div>
+            <div class="tech-corner bottom-left"></div>
+            <h3 class="card-subtitle-accent">// ACTIVE_OPERATIONS</h3>
+            <div class="focus-list">
+              <div class="focus-item">
+                <div class="focus-icon"><i class="fas fa-fire-alt"></i></div>
+                <div class="focus-info">
+                  <h4>Google Serverless Stack</h4>
+                  <p>Performance troubleshooting and tuning for Cloud Run, Cloud Functions, App Engine, and Eventarc workloads.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="focus-info">
+                  <h4>Automated MLOps Engines</h4>
+                  <p>Model registry, feature stores, and automated training pipelines powered by Kubeflow, MLflow, and Kubernetes.</p>
+                </div>
+              </div>
+              <div class="focus-item">
+                <div class="focus-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="focus-info">
+                  <h4>SRE & Architecture Security</h4>
+                  <p>Establishing enterprise-wide observability frameworks (Prometheus, Grafana) and robust security controls.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="section">
+      <div class="section-container">
+        <h2 class="section-title reveal"><span class="title-number">02.</span> OPERATION_LOGS</h2>
+        <div class="timeline">
+          
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot google-theme-border">
+              <i class="fa-brands fa-google"></i>
+            </div>
+            <div class="timeline-content glass-card cyber-card google-glow">
+              <div class="tech-corner top-left"></div>
+              <div class="tech-corner bottom-right"></div>
+              <div class="timeline-header">
+                <span class="timeline-date">2024 - PRESENT // ACTIVE</span>
+                <h3 class="timeline-job">Technical Solutions Engineer (TSE) - Serverless</h3>
+                <h4 class="timeline-company"><span class="google-blue">G</span><span class="google-red">o</span><span class="google-yellow">o</span><span class="google-blue">g</span><span class="google-green">l</span><span class="google-red">e</span></h4>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Debug, resolve, and optimize enterprise workloads running on GCP Serverless products: Cloud Run, Cloud Functions, App Engine, Eventarc, and Workflows.</li>
+                <li>Design migration blueprints for enterprises transitioning from VM-based workloads to containerized microservices and serverless architectures.</li>
+                <li>Collaborate directly with Product Management and Engineering to identify platform bugs, patch developer tooling (gcloud SDK, client libraries), and write production-grade technical guides.</li>
+                <li>Pioneered solutions for reducing container startup latency (cold starts) and optimizing resource allocations in serverless settings.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Google Cloud</span>
+                <span>Cloud Run</span>
+                <span>Cloud Functions</span>
+                <span>Kubernetes</span>
+                <span>Go / Python</span>
+                <span>Knative</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot mlops-theme-border">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="timeline-content glass-card cyber-card mlops-glow">
+              <div class="tech-corner top-right"></div>
+              <div class="tech-corner bottom-left"></div>
+              <div class="timeline-header">
+                <span class="timeline-date">2021 - 2024 // 3 YEARS</span>
+                <h3 class="timeline-job">MLOps Engineer</h3>
+                <h4 class="timeline-company">Enterprise Platform Group</h4>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Designed, built, and maintained enterprise-wide MLOps pipelines using Kubeflow, MLflow, and Kubernetes (EKS/GKE).</li>
+                <li>Containerized complex PyTorch, TensorFlow, and Scikit-Learn models, optimizing Docker structures to reduce image footprints by up to 55%.</li>
+                <li>Implemented fully automated CI/CD pipelines (GitLab CI, GitHub Actions) for continuous integration, testing, evaluation, and deployment of machine learning algorithms.</li>
+                <li>Configured robust observability dashboards with Prometheus, Grafana, and ELK Stack to track model drift, prediction latencies, and container metrics.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>Kubernetes</span>
+                <span>Docker</span>
+                <span>Kubeflow</span>
+                <span>MLflow</span>
+                <span>CI/CD</span>
+                <span>PyTorch</span>
+                <span>TensorFlow</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="skills" class="section">
+      <div class="section-container">
+        <h2 class="section-title reveal"><span class="title-number">03.</span> CONTROL_DECK</h2>
+        <div class="skills-grid reveal">
+          
+          <!-- Category 1 -->
+          <div class="skills-card glass-card cyber-card">
+            <div class="tech-corner top-left"></div>
+            <div class="tech-corner bottom-right"></div>
+            <div class="skills-card-header">
+              <i class="fas fa-cloud-upload-alt skill-cat-icon"></i>
+              <h3>Serverless & Cloud</h3>
+            </div>
+            <ul class="skills-list">
+              <li><span class="skill-name">GCP (Google Cloud Platform)</span> <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></li>
+              <li><span class="skill-name">Cloud Run / Knative</span> <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></li>
+              <li><span class="skill-name">Cloud Functions</span> <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
+              <li><span class="skill-name">Kubernetes (GKE / EKS)</span> <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
+              <li><span class="skill-name">AWS Services</span> <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div></li>
+            </ul>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="skills-card glass-card cyber-card">
+            <div class="tech-corner top-right"></div>
+            <div class="tech-corner bottom-left"></div>
+            <div class="skills-card-header">
+              <i class="fas fa-cogs skill-cat-icon"></i>
+              <h3>MLOps & DevOps</h3>
+            </div>
+            <ul class="skills-list">
+              <li><span class="skill-name">Kubeflow & MLflow</span> <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
+              <li><span class="skill-name">Docker & OCI Containers</span> <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></li>
+              <li><span class="skill-name">Terraform (IaC)</span> <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div></li>
+              <li><span class="skill-name">CI/CD (GitHub Actions / GitLab)</span> <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
+              <li><span class="skill-name">Monitoring (Prometheus/Grafana)</span> <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
+            </ul>
+          </div>
+
+          <!-- Category 3 -->
+          <div class="skills-card glass-card cyber-card">
+            <div class="tech-corner top-left"></div>
+            <div class="tech-corner bottom-right"></div>
+            <div class="skills-card-header">
+              <i class="fas fa-code skill-cat-icon"></i>
+              <h3>Languages & Frameworks</h3>
+            </div>
+            <ul class="skills-list">
+              <li><span class="skill-name">Python (PyTorch / TensorFlow)</span> <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div></li>
+              <li><span class="skill-name">Go (Golang)</span> <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
+              <li><span class="skill-name">Shell Scripting (Bash)</span> <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
+              <li><span class="skill-name">JavaScript / Node.js</span> <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div></li>
+              <li><span class="skill-name">SQL (BigQuery / PostgreSQL)</span> <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="section-container">
+        <h2 class="section-title reveal"><span class="title-number">04.</span> ARCHIVE_DIRECTORY</h2>
+        <div class="projects-grid">
+          
+          <!-- Project 1 -->
+          <div class="project-card glass-card cyber-card reveal">
+            <div class="tech-corner top-left"></div>
+            <div class="tech-corner bottom-right"></div>
+            <div class="project-img-placeholder">
+              <div class="proj-gradient-overlay orange-pink-grad"></div>
+              <i class="fas fa-bolt project-icon-bg"></i>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span>Cloud Run</span>
+                <span>PyTorch</span>
+                <span>GCP</span>
+              </div>
+              <h3 class="project-title">Serverless ML Inference Engine</h3>
+              <p class="project-desc">
+                Built a production-grade inference service on Cloud Run deploying highly optimized PyTorch models. Leveraged startup CPU boost, container min-instances, and memory compression to reduce cold starts from 8.2s to 1.1s.
+              </p>
+              <div class="project-footer">
+                <span class="project-category"><i class="fas fa-server"></i> Serverless</span>
+                <span class="project-arrow"><i class="fas fa-external-link-alt"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card glass-card cyber-card reveal">
+            <div class="tech-corner top-right"></div>
+            <div class="tech-corner bottom-left"></div>
+            <div class="project-img-placeholder">
+              <div class="proj-gradient-overlay blue-purple-grad"></div>
+              <i class="fas fa-microchip project-icon-bg"></i>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span>Kubeflow</span>
+                <span>Kubernetes</span>
+                <span>MLflow</span>
+              </div>
+              <h3 class="project-title">Enterprise Kubeflow Pipeline</h3>
+              <p class="project-desc">
+                Architected an end-to-end automated machine learning pipeline orchestrating data preprocessing, model selection, hyperparameter tuning (Katib), and validation, registering model artifacts in MLflow.
+              </p>
+              <div class="project-footer">
+                <span class="project-category"><i class="fas fa-brain"></i> MLOps</span>
+                <span class="project-arrow"><i class="fas fa-external-link-alt"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card glass-card cyber-card reveal">
+            <div class="tech-corner top-left"></div>
+            <div class="tech-corner bottom-right"></div>
+            <div class="project-img-placeholder">
+              <div class="proj-gradient-overlay green-blue-grad"></div>
+              <i class="fas fa-network-wired project-icon-bg"></i>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span>Eventarc</span>
+                <span>Cloud Functions</span>
+                <span>Go</span>
+              </div>
+              <h3 class="project-title">Event-Driven Log Analytics</h3>
+              <p class="project-desc">
+                Designed a high-throughput, event-driven log processor using Pub/Sub, Eventarc, and Cloud Functions (written in Go) to aggregate and filter telemetry logs, importing filtered metrics into BigQuery in real-time.
+              </p>
+              <div class="project-footer">
+                <span class="project-category"><i class="fas fa-cloud"></i> Serverless</span>
+                <span class="project-arrow"><i class="fas fa-external-link-alt"></i></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="section-container">
+        <div class="contact-wrapper glass-card cyber-card reveal">
+          <div class="tech-corner top-left"></div>
+          <div class="tech-corner bottom-right"></div>
+          <div class="contact-header">
+            <h2 class="contact-title"><span class="title-number">05.</span> PING_OPERATOR</h2>
+            <p class="contact-subtitle">
+              Whether you want to discuss Serverless architectures, MLOps integrations, cloud scaling strategies, or just network—my gateway is open.
+            </p>
+          </div>
+          
+          <div class="contact-info-block">
+            <a href="mailto:nikhil.suryawanshi.dev@google.com" class="contact-email-link">
+              <i class="fas fa-envelope"></i> nikhil.suryawanshi.dev@google.com
+            </a>
+            <p class="contact-alt-text">Establish connection directly or use the quick channel below.</p>
+          </div>
+
+          <form class="contact-form" id="contact-form" onsubmit="event.preventDefault(); alert('Message sent! Connection established. Nikhil will respond shortly.'); this.reset();">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="form-name">Sender_Name</label>
+                <input type="text" id="form-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="form-email">Sender_Gateway (Email)</label>
+                <input type="email" id="form-email" placeholder="john@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="form-subject">Connection_Subject</label>
+              <input type="text" id="form-subject" placeholder="Collaboration / Inquiry" required>
+            </div>
+            <div class="form-group">
+              <label for="form-message">Transmission_Payload (Message)</label>
+              <textarea id="form-message" rows="5" placeholder="Input details here..." required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-submit">
+                TRANSMIT DATA <i class="fas fa-satellite-dish"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-left">
+          <p>© 2026 Nikhil Suryawanshi. Protocol: HTTPS // Powered by Vite, Three.js & GSAP.</p>
+        </div>
+        <div class="footer-right">
+          <ul class="social-links">
+            <li><a href="mailto:nikhil.suryawanshi.dev@google.com" aria-label="Email"><i class="fas fa-envelope"></i></a></li>
+            <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Main JavaScript File (Relative Path for Subdirectory Serving) -->
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
