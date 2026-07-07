@@ -48,7 +48,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Delete deployment artifact
-        uses: geekyeggo/delete-artifact@v4
-        with:
-          name: github-pages
+      # - name: Delete deployment artifact
+      #   uses: geekyeggo/delete-artifact@v4
+      #   with:
+      #     name: github-pages
